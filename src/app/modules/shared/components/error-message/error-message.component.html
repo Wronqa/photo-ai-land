@@ -1,0 +1,8 @@
+<div
+  class="errorContainer"
+  *ngIf="control.errors && (control.touched || formDirective.submitted)"
+>
+  <small class="error">{{
+    errorMessages | validationPipe : control.errors
+  }}</small>
+</div>

@@ -1,0 +1,25 @@
+<div class="container" [ngClass]="activeClass ? 'active' : ''">
+  <div class="form-container sign-up">
+    <app-sign-up-form />
+  </div>
+  <div class="form-container sign-in">
+    <app-sign-in-form />
+  </div>
+  <div class="toggle-container">
+    <div class="toggle">
+      <div class="toggle-panel toggle-left">
+        <h1>Welcome back!</h1>
+        <p>Enter your personal details to get access to all features</p>
+
+        <button>Sign In</button>
+      </div>
+      <div class="toggle-panel toggle-right">
+        <i class="bi bi-camera icon"></i>
+        <h1>Photo AiLand</h1>
+
+        <p>Register with your personal data to explore all features!</p>
+        <button (click)="toogleActive()">Sign up</button>
+      </div>
+    </div>
+  </div>
+</div>
