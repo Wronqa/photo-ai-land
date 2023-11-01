@@ -19,6 +19,9 @@
       placeholder="Confirm password"
       formControlName="passwordConfirmation"
     />
+    <app-error-message
+      [control]="passwordGroupControls['passwordConfirmation']"
+    />
   </div>
   <app-error-message [control]="controls['passwordGroup']" />
   <button>Sign up</button>

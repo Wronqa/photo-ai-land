@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ISignUpForm } from 'src/app/modules/shared/interfaces/form.interfaces';
+import {
+  ISignUpForm,
+  ISignUpValues,
+} from 'src/app/modules/shared/interfaces/form.interfaces';
 import { CustomValidators } from 'src/app/modules/shared/validators/custom-validators';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -11,7 +15,7 @@ import { CustomValidators } from 'src/app/modules/shared/validators/custom-valid
 export class SignUpFormComponent implements OnInit {
   protected form!: FormGroup<ISignUpForm>;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   ngOnInit() {
     this.form = this.fb.nonNullable.group({
@@ -38,6 +42,18 @@ export class SignUpFormComponent implements OnInit {
     return this.controls.passwordGroup.controls;
   }
   submitHandler() {
-    console.log(this.form.value);
+    if (this.form.valid) {
+      const {
+        username,
+        passwordGroup: { password } = {},
+        email,
+      } = this.form.value;
+
+      this.authService
+        .signUp({ username, password, email } as ISignUpValues)
+        .subscribe(() => {
+          console.log('halo');
+        });
+    }
   }
 }

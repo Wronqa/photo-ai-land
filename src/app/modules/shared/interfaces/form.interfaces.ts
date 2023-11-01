@@ -1,5 +1,10 @@
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 
+export interface ISignUpValues {
+  email: string;
+  password: string;
+  username: string;
+}
 export interface ISignInForm {
   email: FormControl<string>;
   password: FormControl<string>;
