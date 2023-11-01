@@ -1,9 +1,25 @@
-<form>
+<form [formGroup]="form" (ngSubmit)="submitHandler()">
   <h1>Create account!</h1>
   <div class="social-icons"></div>
   <span>Use your email to registration!</span>
-  <input type="text" />
-  <input type="text" name="" id="" />
-  <input type="text" />
+  <input type="text" placeholder="Email address" formControlName="email" />
+  <app-error-message [control]="controls['email']" />
+  <input type="text" placeholder="Username" formControlName="username" />
+  <app-error-message [control]="controls['username']" />
+  <div class="passwordGroup" formGroupName="passwordGroup">
+    <input
+      type="password"
+      placeholder="Password"
+      id=""
+      formControlName="password"
+    />
+    <app-error-message [control]="passwordGroupControls['password']" />
+    <input
+      type="password"
+      placeholder="Confirm password"
+      formControlName="passwordConfirmation"
+    />
+  </div>
+  <app-error-message [control]="controls['passwordGroup']" />
   <button>Sign up</button>
 </form>
