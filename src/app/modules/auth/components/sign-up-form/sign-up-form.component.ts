@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  ISignUpForm,
-  ISignUpValues,
-} from 'src/app/modules/shared/interfaces/form.interfaces';
+import { ISignUpForm } from 'src/app/modules/shared/interfaces/form.interfaces';
 import { CustomValidators } from 'src/app/modules/shared/validators/custom-validators';
 import { AuthService } from '../../services/auth.service';
+import { MessageService } from 'primeng/api';
+import { IApiResponse } from 'src/app/modules/shared/interfaces/api.interfaces';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -13,9 +12,14 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./sign-up-form.component.scss', '../../shared-styles.scss'],
 })
 export class SignUpFormComponent implements OnInit {
+  @Output() switchToSignIn = new EventEmitter();
   protected form!: FormGroup<ISignUpForm>;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit() {
     this.form = this.fb.nonNullable.group({
@@ -45,14 +49,22 @@ export class SignUpFormComponent implements OnInit {
     if (this.form.valid) {
       const {
         username,
-        passwordGroup: { password } = {},
+        passwordGroup: {
+          password,
+        } = this.form.controls.passwordGroup.getRawValue(),
         email,
-      } = this.form.value;
+      } = this.form.getRawValue();
 
       this.authService
-        .signUp({ username, password, email } as ISignUpValues)
-        .subscribe(() => {
-          console.log('halo');
+        .signUp({ username, password, email })
+        .subscribe((res: IApiResponse) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: res.message,
+          });
+
+          this.switchToSignIn.emit();
         });
     }
   }

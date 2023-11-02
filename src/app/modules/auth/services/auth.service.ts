@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment.development';
-import { ISignUpValues } from '../../shared/interfaces/form.interfaces';
+import { ISignUpValues } from '../../shared/interfaces/auth.interfaces';
+import { IApiResponse } from '../../shared/interfaces/api.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,9 @@ export class AuthService {
       }),
     };
 
-    return this.http.post('http://localhost:5000/api/auth/register', formData);
+    return this.http.post<IApiResponse>(
+      environment.API_URL + '/auth/register',
+      formData
+    );
   }
 }

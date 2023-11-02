@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AuthComponent {
   activeClass = false;
 
-  protected toogleActive() {
+  toogleActive() {
     this.activeClass = !this.activeClass;
   }
   test() {

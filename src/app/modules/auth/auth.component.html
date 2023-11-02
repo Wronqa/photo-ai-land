@@ -1,6 +1,6 @@
 <div class="container" [ngClass]="activeClass ? 'active' : ''">
   <div class="form-container sign-up">
-    <app-sign-up-form />
+    <app-sign-up-form (switchToSignIn)="toogleActive()" />
   </div>
   <div class="form-container sign-in">
     <app-sign-in-form />
