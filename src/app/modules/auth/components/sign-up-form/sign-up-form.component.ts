@@ -5,6 +5,7 @@ import { CustomValidators } from 'src/app/modules/shared/validators/custom-valid
 import { AuthService } from '../../services/auth.service';
 import { MessageService } from 'primeng/api';
 import { IApiResponse } from 'src/app/modules/shared/interfaces/api.interfaces';
+import { clearForm } from 'src/app/modules/shared/tools/form-cleaner';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -65,8 +66,11 @@ export class SignUpFormComponent implements OnInit {
           });
 
           this.switchToSignIn.emit();
-          this.form.reset();
-          this.form.setErrors(null);
+
+          setTimeout(() => {
+            this.form.reset();
+            clearForm(this.form);
+          }, 1000);
         });
     }
   }
