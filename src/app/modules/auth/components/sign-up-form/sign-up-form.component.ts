@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ISignUpForm } from 'src/app/modules/shared/interfaces/form.interfaces';
+import { ISignUpForm } from 'src/app/modules/shared/interfaces/forms.interfaces';
 import { CustomValidators } from 'src/app/modules/shared/validators/custom-validators';
 import { AuthService } from '../../services/auth.service';
 import { MessageService } from 'primeng/api';
@@ -65,6 +65,8 @@ export class SignUpFormComponent implements OnInit {
           });
 
           this.switchToSignIn.emit();
+          this.form.reset();
+          this.form.setErrors(null);
         });
     }
   }

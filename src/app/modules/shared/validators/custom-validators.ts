@@ -10,13 +10,12 @@ export class CustomValidators {
   static passwordCinformationCorrect(
     group: AbstractControl
   ): ValidationErrors | null {
-    console.log(group);
     const password = (group as FormGroup).controls['password'];
     const passwordConfirmation = (group as FormGroup).controls[
       'passwordConfirmation'
     ];
 
-    if (passwordConfirmation.untouched) return null;
+    if (!passwordConfirmation.value) return null;
 
     return password.value === passwordConfirmation.value
       ? null

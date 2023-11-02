@@ -9,9 +9,10 @@ import {
 import { Observable, catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable()
-export class ErrorInterceptor implements HttpInterceptor {
+export class ApiInterceptor implements HttpInterceptor {
   constructor(private router: Router, private messageService: MessageService) {}
 
   intercept(
