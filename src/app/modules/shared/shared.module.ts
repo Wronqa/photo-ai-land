@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { FeedComponent } from './components/feed/feed.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { DialogModule } from 'primeng/dialog';
+import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { DialogModule } from 'primeng/dialog';
     PostComponent,
     FeedComponent,
     ModalComponent,
+    CommentComponent,
   ],
   imports: [CommonModule, CardModule, ButtonModule, DialogModule],
   exports: [
@@ -24,6 +26,7 @@ import { DialogModule } from 'primeng/dialog';
     PostComponent,
     FeedComponent,
     ModalComponent,
+    CommentComponent,
   ],
 })
 export class SharedModule {}

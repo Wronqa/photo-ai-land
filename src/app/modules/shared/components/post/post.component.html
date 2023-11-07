@@ -33,12 +33,19 @@
   <ng-template pTemplate="footer">
     <div style="display: flex; justify-content: space-between">
       <div style="display: flex; align-items: center">
-        <i class="pi pi-heart-fill" style="color: red; font-size: 2rem"></i>
-        <span style="margin-left: 10px">{{ post.likes }} likes</span>
+        <i
+          (click)="likeHandler()"
+          [ngClass]="checkLiked() ? 'pi pi-heart-fill' : 'pi pi-heart'"
+          style="color: red; font-size: 2rem"
+        ></i>
+        <span style="margin-left: 10px">{{ post.likes.length }} likes</span>
       </div>
       <div style="display: flex; align-items: center">
         <span style="margin-left: 10px">{{ post.comments }} comments</span>
       </div>
+    </div>
+    <div class="d-flex flex-column">
+      <app-comment />
     </div>
   </ng-template>
 </p-card>
