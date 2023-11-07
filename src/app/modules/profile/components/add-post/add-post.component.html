@@ -1,0 +1,44 @@
+<form class="card">
+  <div class="flex flex-column gap-2">
+    <label class="font-semibold" htmlFor="username">Post title</label>
+    <input pInputText id="username" aria-describedby="username-help" />
+  </div>
+  <div class="flex flex-column gap-2 mt-2">
+    <label class="font-semibold" htmlFor="username">Post subtitle</label>
+    <input pInputText id="username" aria-describedby="username-help" />
+    <small id="username-help">Its optional</small>
+  </div>
+  <div class="flex flex-column gap-2 mt-4 mb-5">
+    <label class="font-semibold" htmlFor="username">Attach photos</label>
+
+    <p-fileUpload
+      name="demo[]"
+      url="https://www.primefaces.org/cdn/api/upload.php"
+      [multiple]="true"
+      accept="image/*"
+      [maxFileSize]="+1000000"
+    >
+      <ng-template pTemplate="content">
+        <ul *ngIf="uploadedFiles.length">
+          <li *ngFor="let file of uploadedFiles">
+            {{ file.name }} - {{ file.size }} bytes
+          </li>
+        </ul>
+      </ng-template>
+    </p-fileUpload>
+  </div>
+
+  <div class="flex flex-column gap-2 mt-2">
+    <label class="font-semibold" htmlFor="username">Create article</label>
+
+    <p-editor [(ngModel)]="text" [style]="{ height: '320px' }"></p-editor>
+    <p-tag severity="success" value="NEW"></p-tag>
+    <span class="font-light"
+      >Or you can automaticly generate your article content using AI</span
+    >
+    <p-button
+      label="Generate using AI"
+      styleClass="p-button-danger p-button-text"
+    ></p-button>
+  </div>
+</form>
