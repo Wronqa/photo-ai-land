@@ -6,7 +6,7 @@ import { ButtonModule } from 'primeng/button';
 import { EditorModule } from 'primeng/editor';
 import { DialogModule } from 'primeng/dialog';
 import { AddPostComponent } from './components/add-post/add-post.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { FileUploadModule } from 'primeng/fileupload';
 import { TagModule } from 'primeng/tag';
@@ -23,6 +23,7 @@ import { TagModule } from 'primeng/tag';
     InputTextModule,
     FileUploadModule,
     TagModule,
+    ReactiveFormsModule,
   ],
 })
 export class ProfileModule {}

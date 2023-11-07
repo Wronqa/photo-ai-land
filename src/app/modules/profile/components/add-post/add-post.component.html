@@ -1,11 +1,21 @@
-<form class="card">
+<form class="card" [formGroup]="formGroup" (ngSubmit)="handleSubmit()">
   <div class="flex flex-column gap-2">
     <label class="font-semibold" htmlFor="username">Post title</label>
-    <input pInputText id="username" aria-describedby="username-help" />
+    <input
+      pInputText
+      id="username"
+      aria-describedby="username-help"
+      formControlName="title"
+    />
   </div>
   <div class="flex flex-column gap-2 mt-2">
     <label class="font-semibold" htmlFor="username">Post subtitle</label>
-    <input pInputText id="username" aria-describedby="username-help" />
+    <input
+      pInputText
+      id="username"
+      aria-describedby="username-help"
+      formControlName="subtitle"
+    />
     <small id="username-help">Its optional</small>
   </div>
   <div class="flex flex-column gap-2 mt-4 mb-5">
@@ -31,7 +41,7 @@
   <div class="flex flex-column gap-2 mt-2">
     <label class="font-semibold" htmlFor="username">Create article</label>
 
-    <p-editor [(ngModel)]="text" [style]="{ height: '320px' }"></p-editor>
+    <p-editor formControlName="desc" [style]="{ height: '320px' }"></p-editor>
     <p-tag severity="success" value="NEW"></p-tag>
     <span class="font-light"
       >Or you can automaticly generate your article content using AI</span
@@ -39,6 +49,13 @@
     <p-button
       label="Generate using AI"
       styleClass="p-button-danger p-button-text"
+    ></p-button>
+
+    <p-button
+      class="mt-3"
+      type="submit"
+      label="Add post"
+      styleClass="p-button-raised p-button-danger"
     ></p-button>
   </div>
 </form>
