@@ -1,5 +1,5 @@
 import { MessageService } from 'primeng/api';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +10,12 @@ import {
   BrowserAnimationsModule,
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
+import { CoreModule } from './modules/core/core.module';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { TimelineModule } from './modules/timeline/timeline.module';
+import { SharedModule } from './modules/shared/shared.module';
+import { ProfileModule } from './modules/profile/profile.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +26,12 @@ import {
     AppRoutingModule,
     HttpClientModule,
     ToastModule,
+    CoreModule,
+    ButtonModule,
+    CardModule,
+    TimelineModule,
+    SharedModule,
+    ProfileModule,
   ],
   providers: [
     {
@@ -29,6 +41,7 @@ import {
     },
     MessageService,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

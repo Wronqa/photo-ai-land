@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="controls">
+    <h1>User profile</h1>
+    <div class="card flex justify-content-center">
+      <p-button
+        (click)="toogleModalVisibility()"
+        icon="pi pi-external-link"
+        label="Show"
+      ></p-button>
+    </div>
+  </div>
+
+  <app-feed />
+
+  <app-modal [visibility]="dialogVisibe" />
+</div>
