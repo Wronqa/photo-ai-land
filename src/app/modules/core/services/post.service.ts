@@ -23,4 +23,9 @@ export class PostService {
   uploadPost(post: IPost) {
     return this.http.post('/api/post', post);
   }
+  uploadPostPhotos(files: any) {
+    let testData: FormData = new FormData();
+    testData.append('image', files, files.name);
+    return this.http.post('/api/upload', testData);
+  }
 }
