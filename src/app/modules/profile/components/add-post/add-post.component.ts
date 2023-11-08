@@ -17,7 +17,7 @@ export class AddPostComponent implements OnInit {
   @Output() closeFn = new EventEmitter();
   formGroup!: FormGroup;
   text!: string;
-  uploadedFiles: any = [];
+  uploadedFiles: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,7 +40,7 @@ export class AddPostComponent implements OnInit {
   onUpload(event: UploadEvent) {
     console.log(event.files);
     for (let file of event.files) {
-      this.uploadedFiles = file;
+      this.uploadedFiles.push(file);
     }
   }
 

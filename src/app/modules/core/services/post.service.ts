@@ -25,7 +25,10 @@ export class PostService {
   }
   uploadPostPhotos(files: any) {
     let testData: FormData = new FormData();
-    testData.append('image', files, files.name);
+    files.forEach((element: any) => {
+      testData.append('image', element, element.name);
+    });
+
     return this.http.post('/api/upload', testData);
   }
 }
