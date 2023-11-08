@@ -20,9 +20,6 @@ export class AuthService {
     );
   }
   signIn(formData: ISignInValues) {
-    return this.http.post<IApiResponse>(
-      environment.API_URL + '/auth/login',
-      formData
-    );
+    return this.http.post<IApiResponse>('/api/auth/login', formData);
   }
 }

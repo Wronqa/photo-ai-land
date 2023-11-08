@@ -10,9 +10,9 @@
     </div>
   </div>
 
-  <app-feed />
+  <app-feed [posts]="posts" />
 
   <app-modal [visibility]="dialogVisibe">
-    <app-add-post />
+    <app-add-post (closeFn)="toogleModalVisibility()" />
   </app-modal>
 </div>

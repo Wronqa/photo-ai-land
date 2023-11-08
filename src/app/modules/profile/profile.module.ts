@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { FileUploadModule } from 'primeng/fileupload';
 import { TagModule } from 'primeng/tag';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [ProfileComponent, AddPostComponent],
@@ -25,5 +26,6 @@ import { TagModule } from 'primeng/tag';
     TagModule,
     ReactiveFormsModule,
   ],
+  providers: [MessageService],
 })
 export class ProfileModule {}

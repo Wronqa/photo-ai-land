@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IPost } from '../../interfaces/post.interfaces';
+import { PostService } from 'src/app/modules/core/services/post.service';
 
 @Component({
   selector: 'app-post',
@@ -10,8 +11,13 @@ export class PostComponent {
   private tempUsername = 'wronka';
   @Input() post!: IPost;
 
+  constructor(private postService: PostService) {}
+
   likeHandler() {
-    this.checkLiked() ? this.removeLike() : this.addLike();
+    console.log(this.post);
+    this.postService.likePost(this.post._id).subscribe(() => {
+      this.checkLiked() ? this.removeLike() : this.addLike();
+    });
   }
   removeLike() {
     this.post.likes = this.post.likes.filter((x) => x !== this.tempUsername);

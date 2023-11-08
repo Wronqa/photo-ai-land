@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { postMock } from 'src/app/modules/timeline/POST_MOCKS';
+import { Component, Input, OnInit } from '@angular/core';
 import { IPost } from '../../interfaces/post.interfaces';
+import { PostService } from 'src/app/modules/core/services/post.service';
+import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -8,9 +10,5 @@ import { IPost } from '../../interfaces/post.interfaces';
   styleUrls: ['./feed.component.scss'],
 })
 export class FeedComponent {
-  protected posts: IPost[] = [];
-
-  constructor() {
-    this.posts = postMock;
-  }
+  @Input() posts: IPost[] = [];
 }
