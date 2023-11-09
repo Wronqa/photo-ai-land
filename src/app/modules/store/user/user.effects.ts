@@ -6,17 +6,32 @@ import { loginSuccess, loginFailure } from './user.actions';
 import { AuthService } from '../../auth/services/auth.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ISignInValues } from '../../shared/interfaces/auth.interfaces';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserEffects {
-  constructor(private actions$: Actions, private authService: AuthService) {}
+  constructor(
+    private actions$: Actions,
+    private authService: AuthService,
+    private messageService: MessageService,
+    private router: Router
+  ) {}
 
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType('[Login] User Login'),
       switchMap(({ email, password }: ISignInValues) =>
         this.authService.signIn({ email, password }).pipe(
-          map((user) => loginSuccess({ user: user })),
+          map((user) => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Logged successfully!',
+            });
+            this.router.navigate(['/home']);
+            return loginSuccess({ user: user });
+          }),
           catchError((error) => of(loginFailure({ error })))
         )
       )

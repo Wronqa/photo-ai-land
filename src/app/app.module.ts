@@ -40,6 +40,7 @@ import { UserEffects } from './modules/store/user/user.effects';
     EffectsModule.forRoot([UserEffects]),
   ],
   providers: [
+    MessageService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiInterceptor,

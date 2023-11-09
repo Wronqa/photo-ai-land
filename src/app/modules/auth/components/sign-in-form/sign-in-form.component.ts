@@ -44,18 +44,6 @@ export class SignInFormComponent {
       const { password, email } = this.form.getRawValue();
 
       this.store.dispatch(login({ email, password }));
-      this.store.select(selectUser).subscribe((user: User | null) => {
-        console.log(user);
-        if (user) {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: 'Logged successfully!',
-          });
-
-          this.router.navigate(['/home']);
-        }
-      });
     }
   }
 }
