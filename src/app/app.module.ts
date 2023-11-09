@@ -16,6 +16,10 @@ import { CardModule } from 'primeng/card';
 import { TimelineModule } from './modules/timeline/timeline.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { ProfileModule } from './modules/profile/profile.module';
+import { StoreModule } from '@ngrx/store';
+import { userReducer } from './modules/store/user/user.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './modules/store/user/user.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +36,8 @@ import { ProfileModule } from './modules/profile/profile.module';
     TimelineModule,
     SharedModule,
     ProfileModule,
+    StoreModule.forRoot({ user: userReducer }),
+    EffectsModule.forRoot([UserEffects]),
   ],
   providers: [
     {
@@ -39,6 +45,7 @@ import { ProfileModule } from './modules/profile/profile.module';
       useClass: ApiInterceptor,
       multi: true,
     },
+
     MessageService,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

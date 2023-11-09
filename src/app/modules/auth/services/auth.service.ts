@@ -6,11 +6,15 @@ import {
   ISignUpValues,
 } from '../../shared/interfaces/auth.interfaces';
 import { IApiResponse } from '../../shared/interfaces/api.interfaces';
+import { IUser } from '../../shared/interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  login(username: any, password: any) {
+    throw new Error('Method not implemented.');
+  }
   constructor(private http: HttpClient) {}
 
   signUp(formData: ISignUpValues) {
@@ -20,6 +24,6 @@ export class AuthService {
     );
   }
   signIn(formData: ISignInValues) {
-    return this.http.post<IApiResponse>('/api/auth/login', formData);
+    return this.http.post<IUser>('/api/auth/login', formData);
   }
 }

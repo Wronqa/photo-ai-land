@@ -9,6 +9,10 @@ import { ISignInForm } from 'src/app/modules/shared/interfaces/forms.interfaces'
 import { AuthService } from '../../services/auth.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { login } from 'src/app/modules/store/user/user.actions';
+import { selectUser } from 'src/app/modules/store/user/user.selectors';
+import { User } from 'src/app/modules/shared/models/User';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -19,6 +23,7 @@ export class SignInFormComponent {
   protected form!: FormGroup<ISignInForm>;
 
   constructor(
+    private store: Store,
     private fb: FormBuilder,
     private authService: AuthService,
     private messageService: MessageService,
@@ -38,14 +43,18 @@ export class SignInFormComponent {
     if (this.form.valid) {
       const { password, email } = this.form.getRawValue();
 
-      this.authService.signIn({ password, email }).subscribe((res) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'Logged successfully!',
-        });
+      this.store.dispatch(login({ email, password }));
+      this.store.select(selectUser).subscribe((user: User | null) => {
+        console.log(user);
+        if (user) {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Logged successfully!',
+          });
 
-        this.router.navigate(['/home']);
+          this.router.navigate(['/home']);
+        }
       });
     }
   }
