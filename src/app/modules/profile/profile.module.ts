@@ -11,10 +11,23 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FileUploadModule } from 'primeng/fileupload';
 import { TagModule } from 'primeng/tag';
 import { MessageService } from 'primeng/api';
+import { CoverPhotoComponent } from './components/cover-photo/cover-photo.component';
+import { EditDetailsComponent } from './components/edit-details/edit-details.component';
+import { ProfileRoutingModule } from './profile.routing.module';
+import { ChangePasswordFormComponent } from './components/change-password-form/change-password-form.component';
+import { EditProfileFormComponent } from './components/edit-profile-form/edit-profile-form.component';
 
 @NgModule({
-  declarations: [ProfileComponent, AddPostComponent],
+  declarations: [
+    ProfileComponent,
+    AddPostComponent,
+    CoverPhotoComponent,
+    EditDetailsComponent,
+    ChangePasswordFormComponent,
+    EditProfileFormComponent,
+  ],
   imports: [
+    ProfileRoutingModule,
     CommonModule,
     SharedModule,
     ButtonModule,
@@ -26,6 +39,5 @@ import { MessageService } from 'primeng/api';
     TagModule,
     ReactiveFormsModule,
   ],
-  providers: [MessageService],
 })
 export class ProfileModule {}

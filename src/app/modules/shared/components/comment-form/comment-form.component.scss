@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  align-items: center;
+
+  input {
+    margin-left: 5px;
+    padding: 10px;
+    width: 70%;
+    background-color: whitesmoke;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+  }
+}

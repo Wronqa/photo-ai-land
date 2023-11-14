@@ -41,11 +41,16 @@
         <span style="margin-left: 10px">{{ post.likes.length }} likes</span>
       </div>
       <div style="display: flex; align-items: center">
-        <span style="margin-left: 10px">{{ post.comments }} comments</span>
+        <span style="margin-left: 10px"
+          >{{ post.comments.length }} comments</span
+        >
       </div>
     </div>
     <div class="d-flex flex-column">
-      <app-comment />
+      <app-comment-form [post]="post" />
+      <ng-container *ngFor="let comment of post.comments">
+        <app-comment />
+      </ng-container>
     </div>
   </ng-template>
 </p-card>

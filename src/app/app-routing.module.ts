@@ -6,14 +6,10 @@ import { ProfileComponent } from './modules/profile/profile.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'timeline',
     pathMatch: 'full',
   },
-  {
-    path: 'home',
-    loadChildren: () =>
-      import('./modules/home/home.module').then((m) => m.HomeModule),
-  },
+
   {
     path: 'auth',
     loadChildren: () =>
@@ -25,9 +21,9 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'profile/:username',
-    component: ProfileComponent,
-    pathMatch: 'full',
+    path: 'profile',
+    loadChildren: () =>
+      import('./modules/profile/profile.module').then((m) => m.ProfileModule),
   },
 ];
 

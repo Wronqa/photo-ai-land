@@ -31,4 +31,7 @@ export class PostService {
 
     return this.http.post('/api/upload', testData);
   }
+  commentPost(id: string, desc: string): Observable<IPost> {
+    return this.http.put<IPost>('/api/post/comment/' + id, { desc });
+  }
 }

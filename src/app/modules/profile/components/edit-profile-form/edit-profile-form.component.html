@@ -1,0 +1,36 @@
+<form [formGroup]="formGroup" (ngSubmit)="submitHandler()">
+  <h1>Change your email</h1>
+  <div class="flex flex-column gap-2 m-3">
+    <label htmlFor="username">Email</label>
+    <input
+      pInputText
+      type="text"
+      id="username"
+      aria-describedby="username-help"
+      formControlName="email"
+    />
+    <small id="username-help">Set your new email address.</small>
+    <app-error-message [control]="controls['email']" />
+  </div>
+
+  <div class="flex flex-column gap-2 m-3">
+    <label htmlFor="username">Set password</label>
+    <input
+      pInputText
+      type="password"
+      id="username"
+      aria-describedby="username-help"
+      formControlName="password"
+    />
+    <small id="username-help">Set your current password</small>
+    <app-error-message [control]="controls['password']" />
+  </div>
+
+  <div class="flex flex-column gap-2 m-3">
+    <p-button
+      type="submit"
+      label="Edit profile data"
+      severity="warning"
+    ></p-button>
+  </div>
+</form>

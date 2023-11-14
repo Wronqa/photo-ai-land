@@ -1,11 +1,21 @@
 <div class="container">
   <div class="controls">
+    <div class="profile-info">
+      <app-cover-photo />
+      <app-profile-photo />
+    </div>
+
     <h1>User profile</h1>
-    <div class="card flex justify-content-center">
+    <div class="card flex justify-content-start">
       <p-button
         (click)="toogleModalVisibility()"
         icon="pi pi-external-link"
         label="Show"
+      ></p-button>
+      <p-button
+        (click)="toogleModalVisibility()"
+        icon="pi pi-external-link"
+        label="Edit profile info"
       ></p-button>
     </div>
   </div>

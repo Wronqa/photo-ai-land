@@ -29,10 +29,27 @@ export class UserEffects {
               summary: 'Success',
               detail: 'Logged successfully!',
             });
-            this.router.navigate(['/home']);
+            this.router.navigate(['/timeline']);
             return loginSuccess({ user: user });
           }),
           catchError((error) => of(loginFailure({ error })))
+        )
+      )
+    )
+  );
+
+  user$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType('[User] Get user'),
+      switchMap(() =>
+        this.authService.checkUser().pipe(
+          map((user) => {
+            return loginSuccess({ user: user });
+          }),
+          catchError((error) => {
+            this.router.navigate(['/auth']);
+            return of(loginFailure({ error }));
+          })
         )
       )
     )

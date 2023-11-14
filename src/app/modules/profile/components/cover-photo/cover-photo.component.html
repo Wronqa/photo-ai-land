@@ -1,0 +1,13 @@
+<div class="container">
+  <img class="cover-photo" [src]="photo" alt="" />
+  <p-fileUpload
+    #fileUpload
+    class="uploader"
+    mode="basic"
+    chooseLabel="Choose"
+    name="demo[]"
+    [customUpload]="true"
+    (onSelect)="onUpload($event, fileUpload)"
+    accept="image/*"
+  ></p-fileUpload>
+</div>

@@ -9,6 +9,11 @@ import { FeedComponent } from './components/feed/feed.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { DialogModule } from 'primeng/dialog';
 import { CommentComponent } from './components/comment/comment.component';
+import { ProfilePhotoComponent } from './components/profile-photo/profile-photo.component';
+import { FileUploadModule } from 'primeng/fileupload';
+import { UserProfileInfoComponent } from './components/user-profile-info/user-profile-info.component';
+import { CommentFormComponent } from './components/comment-form/comment-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,8 +23,18 @@ import { CommentComponent } from './components/comment/comment.component';
     FeedComponent,
     ModalComponent,
     CommentComponent,
+    ProfilePhotoComponent,
+    UserProfileInfoComponent,
+    CommentFormComponent,
   ],
-  imports: [CommonModule, CardModule, ButtonModule, DialogModule],
+  imports: [
+    CommonModule,
+    CardModule,
+    ButtonModule,
+    DialogModule,
+    FileUploadModule,
+    FormsModule,
+  ],
   exports: [
     ErrorMessageComponent,
     ValidationPipe,
@@ -27,6 +42,8 @@ import { CommentComponent } from './components/comment/comment.component';
     FeedComponent,
     ModalComponent,
     CommentComponent,
+    ProfilePhotoComponent,
+    FileUploadModule,
   ],
 })
 export class SharedModule {}

@@ -1,0 +1,9 @@
+<div class="container">
+  <app-user-profile-info />
+  <input type="text" [(ngModel)]="comment" />
+  <p-button
+    label="Send"
+    styleClass="p-button-danger p-button-text"
+    (click)="submitHandler()"
+  ></p-button>
+</div>

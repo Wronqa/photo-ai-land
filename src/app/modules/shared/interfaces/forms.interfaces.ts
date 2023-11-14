@@ -9,6 +9,14 @@ export interface ISignUpForm {
   username: FormControl<string>;
   passwordGroup: FormGroup<IPasswordGroup>;
 }
+export interface IChangePasswordForm {
+  currentPassword: FormControl<string>;
+  passwordGroup: FormGroup<IPasswordGroup>;
+}
+export interface IChangeProfileDataForm {
+  email: FormControl<string>;
+  password: FormControl<string>;
+}
 interface IPasswordGroup {
   password: FormControl<string>;
   passwordConfirmation: FormControl<string>;
