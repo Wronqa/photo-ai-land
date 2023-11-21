@@ -3,7 +3,7 @@
   <span>Use your email and password</span>
   <input type="email" placeholder="Email adress" formControlName="email" />
   <app-error-message [control]="controls['email']" />
-  <input type="password" placeholder="Password" formControlName="password" />
+  <input autocomplete="false" type="password" placeholder="Password" formControlName="password" />
   <app-error-message [control]="controls['password']" />
   <a href="">Forgot password? Click here!</a>
   <button>Sign in</button>

@@ -22,7 +22,7 @@
 
   <app-feed [posts]="posts" />
 
-  <app-modal [visibility]="dialogVisibe">
+  <app-modal [visibility]="dialogVisibe" style="z-index: 5">
     <app-add-post (closeFn)="toogleModalVisibility()" />
   </app-modal>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IPost } from '../../interfaces/post.interfaces';
 import { PostService } from 'src/app/modules/core/services/post.service';
 
@@ -7,11 +7,18 @@ import { PostService } from 'src/app/modules/core/services/post.service';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
 })
-export class PostComponent {
+export class PostComponent implements OnInit {
   private tempUsername = 'wronka';
   @Input() post!: IPost;
+  protected photos!: any;
 
   constructor(private postService: PostService) {}
+
+  ngOnInit(): void {
+    this.photos = this.post.img.map((img: any) => {
+      return { url: img.url };
+    });
+  }
 
   likeHandler() {
     console.log(this.post);

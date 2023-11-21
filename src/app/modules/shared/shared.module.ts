@@ -15,6 +15,11 @@ import { UserProfileInfoComponent } from './components/user-profile-info/user-pr
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
 import { FormsModule } from '@angular/forms';
 
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { PhotoGalleryComponent } from './components/photo-gallery/photo-gallery.component';
+
+import { GalleriaModule } from 'primeng/galleria';
 @NgModule({
   declarations: [
     ErrorMessageComponent,
@@ -26,6 +31,8 @@ import { FormsModule } from '@angular/forms';
     ProfilePhotoComponent,
     UserProfileInfoComponent,
     CommentFormComponent,
+    SpinnerComponent,
+    PhotoGalleryComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +40,9 @@ import { FormsModule } from '@angular/forms';
     ButtonModule,
     DialogModule,
     FileUploadModule,
+    FormsModule,
+    ProgressSpinnerModule,
+    GalleriaModule,
     FormsModule,
   ],
   exports: [
@@ -44,6 +54,7 @@ import { FormsModule } from '@angular/forms';
     CommentComponent,
     ProfilePhotoComponent,
     FileUploadModule,
+    SpinnerComponent,
   ],
 })
 export class SharedModule {}

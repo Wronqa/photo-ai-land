@@ -20,6 +20,7 @@ import { StoreModule } from '@ngrx/store';
 import { userReducer } from './modules/store/user/user.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './modules/store/user/user.effects';
+import { LoadingInterceptor } from './modules/core/interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,6 +45,11 @@ import { UserEffects } from './modules/store/user/user.effects';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
       multi: true,
     },
 

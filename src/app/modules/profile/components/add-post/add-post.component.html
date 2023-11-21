@@ -43,8 +43,14 @@
     >
     <p-button
       label="Generate using AI"
+      (click)="showAiSection()"
       styleClass="p-button-danger p-button-text"
     ></p-button>
+
+    <ng-container
+      *ngIf="aiSectionVisible"
+      [ngTemplateOutlet]="aiForm"
+    ></ng-container>
 
     <p-button
       class="mt-3"
@@ -54,3 +60,28 @@
     ></p-button>
   </div>
 </form>
+
+<ng-template #aiForm>
+  <span class="font-light mt-2">
+    Harness the AI magic! Our API generates article summaries instantly from
+    your input keywords. Get concise and relevant content for your application
+    effortlessly.
+  </span>
+  <div class="flex flex-column gap-2 mt-2">
+    <label class="font-semibold" htmlFor="username"
+      >Type keywords that describes your post. Add as much detail as possible
+    </label>
+    <input
+      pInputText
+      id="username"
+      [(ngModel)]="prompt"
+      aria-describedby="username-help"
+      placeholder="ex. Generate text about pets"
+    />
+    <p-button
+      (click)="generateArticle()"
+      label="Generate"
+      styleClass="p-button-info p-button-text"
+    ></p-button>
+  </div>
+</ng-template>

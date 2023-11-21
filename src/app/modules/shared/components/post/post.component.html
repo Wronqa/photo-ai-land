@@ -20,11 +20,12 @@
   </ng-template>
 
   <ng-template pTemplate="content" style="position: relative">
-    <img
+    <!-- <img
       src="https://tvn24.pl/najnowsze/cdn-zdjecie-thz3d5-tecza-na-niebie-5476379/tecza+shutterstock_646187128.jpg"
       alt=""
       style="width: 100%; height: 150px"
-    />
+    /> -->
+    <app-photo-gallery  [images]="photos" />
     <p>
       {{ post.desc }}
     </p>

@@ -16,10 +16,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   signUp(formData: ISignUpValues) {
-    return this.http.post<IApiResponse>(
-      environment.API_URL + '/auth/register',
-      formData
-    );
+    return this.http.post<IApiResponse>('/api/auth/register', formData);
   }
   signIn(formData: ISignInValues) {
     return this.http.post<IUser>('/api/auth/login', formData);
