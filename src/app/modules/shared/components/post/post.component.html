@@ -5,12 +5,13 @@
   [style]="{ width: '60%' }"
 >
   <ng-template pTemplate="header">
-    <div class="top">
+    <div
+      class="top"
+      [routerLink]="['/profile/user/', post.username]"
+      routerLinkActive="router-link-active"
+    >
       <div class="left">
-        <img
-          src="https://media.licdn.com/dms/image/D4D03AQGQDrQKfSmnFg/profile-displayphoto-shrink_200_200/0/1695543542316?e=2147483647&v=beta&t=_N2iVEkWy5KWDG3Qvje_5YLzMWcT8LAO_ptq4MIB6Q4"
-          alt=""
-        />
+        <img [src]="user.profilePicture" alt="" />
       </div>
       <div class="right">
         <strong>{{ post.username }}</strong>
@@ -25,7 +26,7 @@
       alt=""
       style="width: 100%; height: 150px"
     /> -->
-    <app-photo-gallery  [images]="photos" />
+    <app-photo-gallery [images]="photos" />
     <p>
       {{ post.desc }}
     </p>

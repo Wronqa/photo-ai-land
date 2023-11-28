@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IPost } from '../../interfaces/post.interfaces';
 import { PostService } from 'src/app/modules/core/services/post.service';
+import { IUser } from '../../interfaces/user.interface';
+import { UserService } from 'src/app/modules/core/services/user.service';
 
 @Component({
   selector: 'app-post',
@@ -8,16 +10,24 @@ import { PostService } from 'src/app/modules/core/services/post.service';
   styleUrls: ['./post.component.scss'],
 })
 export class PostComponent implements OnInit {
+  protected user!: IUser;
   private tempUsername = 'wronka';
   @Input() post!: IPost;
   protected photos!: any;
 
-  constructor(private postService: PostService) {}
+  constructor(
+    private postService: PostService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.photos = this.post.img.map((img: any) => {
       return { url: img.url };
     });
+
+    this.userService
+      .getUser(this.post.username)
+      .subscribe((res) => (this.user = res));
   }
 
   likeHandler() {

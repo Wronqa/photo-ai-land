@@ -2,6 +2,7 @@
   <img [src]="photo" alt="" />
 
   <p-fileUpload
+    *ngIf="user.username === myUser.username"
     #fileUpload
     class="uploader"
     mode="basic"
@@ -11,5 +12,5 @@
     accept="image/*"
   ></p-fileUpload>
 
-  <span>Wronka</span>
+  <span>{{ user.username }}</span>
 </div>

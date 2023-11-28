@@ -14,7 +14,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { UserProfileInfoComponent } from './components/user-profile-info/user-profile-info.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
 import { FormsModule } from '@angular/forms';
-
+import { RouterModule, Routes } from '@angular/router';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { PhotoGalleryComponent } from './components/photo-gallery/photo-gallery.component';
@@ -44,6 +44,7 @@ import { GalleriaModule } from 'primeng/galleria';
     ProgressSpinnerModule,
     GalleriaModule,
     FormsModule,
+    RouterModule
   ],
   exports: [
     ErrorMessageComponent,

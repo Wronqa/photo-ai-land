@@ -4,8 +4,15 @@ import { IPhotoRes } from '../../interfaces/api.interfaces';
 import { FileUpload } from 'primeng/fileupload';
 import { Store, select } from '@ngrx/store';
 
-import { selectProfilePhoto } from 'src/app/modules/store/user/user.selectors';
+import {
+  selectProfilePhoto,
+  selectUser,
+} from 'src/app/modules/store/user/user.selectors';
 import { editSuccess } from 'src/app/modules/store/user/user.actions';
+import { tap, concatMap } from 'rxjs';
+import { UserService } from 'src/app/modules/core/services/user.service';
+import { ActivatedRoute } from '@angular/router';
+import { IUser } from '../../interfaces/user.interface';
 
 interface UploadEvent {
   originalEvent: Event;
@@ -18,15 +25,34 @@ interface UploadEvent {
   styleUrls: ['./profile-photo.component.scss'],
 })
 export class ProfilePhotoComponent implements OnInit {
-  photo =
-    'https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg';
+  photo!: string;
+  user!: IUser;
+  myUser!: IUser;
   uploadedFiles: any;
 
-  constructor(private profileService: ProfileService, private store: Store) {}
+  constructor(
+    private profileService: ProfileService,
+    private store: Store,
+    private userService: UserService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.store.pipe(select(selectProfilePhoto)).subscribe((photo) => {
-      if (photo) this.photo = photo;
+    this.activatedRoute.params
+      .pipe(concatMap(({ username }) => this.userService.getUser(username)))
+      .subscribe((user) => {
+        console.log(user);
+        console.log(user.coverPicture);
+        if (user) {
+          this.user = user;
+          this.photo = user.profilePicture;
+        }
+      });
+
+    this.store.pipe(select(selectUser)).subscribe((user) => {
+      if (user) {
+        this.myUser = user;
+      }
     });
   }
 
@@ -35,13 +61,19 @@ export class ProfilePhotoComponent implements OnInit {
 
     this.profileService
       .uploadPostPhotos(this.uploadedFiles)
-      .subscribe((res: IPhotoRes[]) => {
-        fileUpload.clear(); // this will clear your file
-        this.photo = res[0].url;
+      .pipe(
+        tap((res: IPhotoRes[]) => {
+          fileUpload.clear();
+          this.photo = res[0].url;
 
-        this.store.dispatch(
-          editSuccess({ data: this.photo, property: '_profilePicture' })
-        );
+          this.store.dispatch(
+            editSuccess({ data: this.photo, property: '_profilePicture' })
+          );
+        }),
+        concatMap((res) => this.userService.updateProfilePhoto(res[0].url))
+      )
+      .subscribe(() => {
+        console.log('Gut');
       });
   }
 }

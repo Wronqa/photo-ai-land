@@ -8,4 +8,19 @@
     width: 100%;
     position: relative;
   }
+  h1 {
+    padding-left: 19rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  .controls2 {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .btn {
+    margin: 5px !important;
+  }
 }

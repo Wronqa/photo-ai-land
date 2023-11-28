@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { mergeMap } from 'rxjs';
 import { PostService } from '../core/services/post.service';
 import { IPost } from '../shared/interfaces/post.interfaces';
+import { UserService } from '../core/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private postsService: PostService
+    private postsService: PostService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +33,8 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-  toogleModalVisibility() {
+  toogleModalVisibility(post?: any) {
+    post && this.posts.push(post);
     this.dialogVisibe = !this.dialogVisibe;
   }
 }

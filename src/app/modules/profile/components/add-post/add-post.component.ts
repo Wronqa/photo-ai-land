@@ -16,7 +16,7 @@ interface UploadEvent {
   styleUrls: ['./add-post.component.scss'],
 })
 export class AddPostComponent implements OnInit {
-  @Output() closeFn = new EventEmitter();
+  @Output() closeFn = new EventEmitter<any>();
   protected aiSectionVisible = false;
   formGroup!: FormGroup;
   text!: string;
@@ -74,7 +74,9 @@ export class AddPostComponent implements OnInit {
             severity: 'success',
             summary: 'Post created',
           });
-          this.closeFn.emit();
+          this.formGroup.reset();
+          this.uploadedFiles = [];
+          this.closeFn.emit(res);
         });
     }
     // if (this.formGroup.valid) {

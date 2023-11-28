@@ -1,6 +1,7 @@
 <div class="container">
   <img class="cover-photo" [src]="photo" alt="" />
   <p-fileUpload
+    *ngIf="user.username === myUser.username"
     #fileUpload
     class="uploader"
     mode="basic"

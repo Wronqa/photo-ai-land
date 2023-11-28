@@ -6,14 +6,17 @@
     </div>
 
     <h1>User profile</h1>
-    <div class="card flex justify-content-start">
+    <div class="card flex controls2">
       <p-button
+        class="btn"
+        styleClass="p-button-danger p-button-text"
         (click)="toogleModalVisibility()"
         icon="pi pi-external-link"
-        label="Show"
+        label="Add post"
       ></p-button>
       <p-button
-        (click)="toogleModalVisibility()"
+        class="btn"
+        styleClass="p-button-danger p-button-text"
         icon="pi pi-external-link"
         label="Edit profile info"
       ></p-button>
@@ -23,6 +26,6 @@
   <app-feed [posts]="posts" />
 
   <app-modal [visibility]="dialogVisibe" style="z-index: 5">
-    <app-add-post (closeFn)="toogleModalVisibility()" />
+    <app-add-post (closeFn)="toogleModalVisibility($event)" />
   </app-modal>
 </div>
