@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
+import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,12 +11,14 @@ import { MenuItem } from 'primeng/api';
 export class NavbarComponent implements OnInit {
   items: MenuItem[] | undefined;
 
+  constructor(
+    private userService: UserService,
+    private messageService: MessageService,
+    private router: Router
+  ) {}
+
   ngOnInit() {
     this.items = [
-      {
-        label: 'PhotoAiLand',
-        icon: 'pi pi-fw pi-file',
-      },
       {
         label: 'News',
         icon: 'pi pi-fw pi-file',
@@ -22,8 +26,23 @@ export class NavbarComponent implements OnInit {
 
       {
         label: 'Friends',
+        icon: 'pi pi-fw pi-user-edit',
+      },
+      {
+        label: 'Logout',
         icon: 'pi pi-fw pi-power-off',
+        command: () => this.logout(),
       },
     ];
+  }
+  logout() {
+    this.userService.logout().subscribe(() => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Logout successfully!',
+      });
+      this.router.navigate(['/auth']);
+    });
   }
 }

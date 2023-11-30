@@ -1,0 +1,12 @@
+<span class="p-input-icon-left">
+  <i class="pi pi-search"></i>
+  <input
+    [formControl]="value"
+    type="text"
+    pInputText
+    placeholder="Search blog"
+  />
+  <div class="users" style="color: black" *ngFor="let user of users">
+    <app-user-profile-info [user]="user" (click)="clearTable()" />
+  </div>
+</span>

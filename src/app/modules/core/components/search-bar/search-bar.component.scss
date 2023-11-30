@@ -1,0 +1,18 @@
+input {
+  width: 450px;
+}
+.users {
+  position: absolute;
+  z-index: 999;
+  bottom: -100px;
+  left: 0;
+  width: 450px;
+  display: flex;
+  justify-content: flex-start;
+  background-color: #f8f8ff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+span {
+  position: relative;
+}

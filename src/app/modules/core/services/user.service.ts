@@ -6,6 +6,7 @@ import {
   IPasswords,
   IUser,
 } from '../../shared/interfaces/user.interface';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -27,5 +28,13 @@ export class UserService {
   }
   getUser(username: string) {
     return this.http.get<IUser>(`/api/user/profile/${username}`);
+  }
+  searchUser(username: string) {
+    return this.http
+      .get<IUser[]>('/api/user/search/' + username)
+      .pipe(debounceTime(300), distinctUntilChanged());
+  }
+  logout() {
+    return this.http.get('/api/auth/logout');
   }
 }

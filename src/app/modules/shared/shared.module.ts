@@ -44,7 +44,7 @@ import { GalleriaModule } from 'primeng/galleria';
     ProgressSpinnerModule,
     GalleriaModule,
     FormsModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
     ErrorMessageComponent,
@@ -56,6 +56,7 @@ import { GalleriaModule } from 'primeng/galleria';
     ProfilePhotoComponent,
     FileUploadModule,
     SpinnerComponent,
+    UserProfileInfoComponent,
   ],
 })
 export class SharedModule {}

@@ -1,14 +1,10 @@
 <div class="test">
   <div class="top">
-    <div class="left">
-      <img
-        src="https://media.licdn.com/dms/image/D4D03AQGQDrQKfSmnFg/profile-displayphoto-shrink_200_200/0/1695543542316?e=2147483647&v=beta&t=_N2iVEkWy5KWDG3Qvje_5YLzMWcT8LAO_ptq4MIB6Q4"
-        alt=""
-      />
+    <div class="left" [routerLink]="['/profile/user', user.username]">
+      <img [src]="user.profilePicture" alt="" />
     </div>
     <div class="right">
-      <strong>kuba</strong>
-      <small>5 mins ago</small>
+      <strong>{{ user.username }}</strong>
     </div>
   </div>
 </div>
