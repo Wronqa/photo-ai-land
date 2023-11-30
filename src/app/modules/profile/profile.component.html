@@ -20,6 +20,15 @@
         icon="pi pi-external-link"
         label="Edit profile info"
       ></p-button>
+      <p-button
+        *ngIf="myUser.username !== username"
+        class="btn"
+        [styleClass]="!isFollowed ? 'p-button-success' : 'p-button-danger'"
+        style="position: absolute; right: 50px; top: 480px"
+        icon="pi pi-external-link"
+        [label]="!isFollowed ? 'Follow user' : 'Unfollow user'"
+        (click)="followUser()"
+      ></p-button>
     </div>
   </div>
 

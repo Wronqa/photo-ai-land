@@ -34,6 +34,12 @@ export class UserService {
       .get<IUser[]>('/api/user/search/' + username)
       .pipe(debounceTime(300), distinctUntilChanged());
   }
+  followUser(username: string) {
+    return this.http.put<IUser>('/api/user/follow/' + username, {});
+  }
+  getFriends(username: string) {
+    return this.http.get<IUser[]>('/api/user/friends/' + username);
+  }
   logout() {
     return this.http.get('/api/auth/logout');
   }

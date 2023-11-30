@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { UserService } from '../../services/user.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
+import { selectUser } from 'src/app/modules/store/user/user.selectors';
 
 @Component({
   selector: 'app-navbar',
@@ -10,11 +12,14 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   items: MenuItem[] | undefined;
+  protected dialogVisibe = false;
+  protected username!: string;
 
   constructor(
     private userService: UserService,
     private messageService: MessageService,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) {}
 
   ngOnInit() {
@@ -27,6 +32,7 @@ export class NavbarComponent implements OnInit {
       {
         label: 'Friends',
         icon: 'pi pi-fw pi-user-edit',
+        command: () => this.toogleModalVisibility(),
       },
       {
         label: 'Logout',
@@ -34,6 +40,9 @@ export class NavbarComponent implements OnInit {
         command: () => this.logout(),
       },
     ];
+  }
+  toogleModalVisibility() {
+    this.dialogVisibe = !this.dialogVisibe;
   }
   logout() {
     this.userService.logout().subscribe(() => {

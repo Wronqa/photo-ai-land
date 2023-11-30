@@ -20,6 +20,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { PhotoGalleryComponent } from './components/photo-gallery/photo-gallery.component';
 
 import { GalleriaModule } from 'primeng/galleria';
+import { FriendsListComponent } from './components/friends-list/friends-list.component';
 @NgModule({
   declarations: [
     ErrorMessageComponent,
@@ -33,6 +34,7 @@ import { GalleriaModule } from 'primeng/galleria';
     CommentFormComponent,
     SpinnerComponent,
     PhotoGalleryComponent,
+    FriendsListComponent,
   ],
   imports: [
     CommonModule,
@@ -57,6 +59,7 @@ import { GalleriaModule } from 'primeng/galleria';
     FileUploadModule,
     SpinnerComponent,
     UserProfileInfoComponent,
+    FriendsListComponent,
   ],
 })
 export class SharedModule {}
