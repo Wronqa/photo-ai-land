@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container" *ngIf="user">
   <div class="flex align-items-start">
-    <app-user-profile-info />
+    <app-user-profile-info [user]="user" />
   </div>
   <div class="right">JEBAC ULANE KURWY</div>
 </div>

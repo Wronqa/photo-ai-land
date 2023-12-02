@@ -4,6 +4,8 @@ import { PostService } from 'src/app/modules/core/services/post.service';
 import { IUser } from '../../interfaces/user.interface';
 import { UserService } from 'src/app/modules/core/services/user.service';
 import { MessageService } from 'primeng/api';
+import { Store, select } from '@ngrx/store';
+import { selectUser } from 'src/app/modules/store/user/user.selectors';
 
 @Component({
   selector: 'app-post',
@@ -17,16 +19,22 @@ export class PostComponent implements OnInit {
   @Output() deletePostHandle = new EventEmitter<string>();
   protected photos!: any;
   protected dialogVisibe = false;
+  protected myUser!: IUser;
 
   constructor(
     private postService: PostService,
     private userService: UserService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
     this.photos = this.post.img.map((img: any) => {
       return { url: img.url };
+    });
+
+    this.store.pipe(select(selectUser)).subscribe((user) => {
+      if (user) this.myUser = user;
     });
 
     this.userService

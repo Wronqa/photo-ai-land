@@ -23,6 +23,7 @@
         </div>
       </div>
       <i
+        *ngIf="myUser.username === post.username"
         class="pi pi-times"
         style="color: red; margin-right: 10px; font-size: 1.5rem"
         (click)="toogleModalVisibility()"
@@ -61,7 +62,7 @@
     <div class="d-flex flex-column">
       <app-comment-form [post]="post" />
       <ng-container *ngFor="let comment of post.comments">
-        <app-comment />
+        <app-comment [comment]="comment" />
       </ng-container>
     </div>
   </ng-template>
