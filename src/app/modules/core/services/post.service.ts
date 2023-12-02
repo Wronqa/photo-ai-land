@@ -34,4 +34,7 @@ export class PostService {
   commentPost(id: string, desc: string): Observable<IPost> {
     return this.http.put<IPost>('/api/post/comment/' + id, { desc });
   }
+  deletePost(id: string) {
+    return this.http.delete('/api/post/' + id);
+  }
 }

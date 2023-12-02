@@ -11,4 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FeedComponent {
   @Input() posts: IPost[] = [];
+
+  deletePost(id: string) {
+    this.posts = this.posts.filter((post) => post._id !== id);
+  }
 }

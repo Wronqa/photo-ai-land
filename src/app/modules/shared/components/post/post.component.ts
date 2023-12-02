@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IPost } from '../../interfaces/post.interfaces';
 import { PostService } from 'src/app/modules/core/services/post.service';
 import { IUser } from '../../interfaces/user.interface';
 import { UserService } from 'src/app/modules/core/services/user.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-post',
@@ -13,11 +14,14 @@ export class PostComponent implements OnInit {
   protected user!: IUser;
   private tempUsername = 'wronka';
   @Input() post!: IPost;
+  @Output() deletePostHandle = new EventEmitter<string>();
   protected photos!: any;
+  protected dialogVisibe = false;
 
   constructor(
     private postService: PostService,
-    private userService: UserService
+    private userService: UserService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -29,7 +33,20 @@ export class PostComponent implements OnInit {
       .getUser(this.post.username)
       .subscribe((res) => (this.user = res));
   }
-
+  toogleModalVisibility(post?: any) {
+    this.dialogVisibe = !this.dialogVisibe;
+  }
+  deletePost() {
+    this.postService.deletePost(this.post._id).subscribe(() => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Post has been deleted',
+      });
+      this.toogleModalVisibility();
+      this.deletePostHandle.emit(this.post._id);
+    });
+  }
   likeHandler() {
     console.log(this.post);
     this.postService.likePost(this.post._id).subscribe(() => {

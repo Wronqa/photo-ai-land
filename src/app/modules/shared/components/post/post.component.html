@@ -3,20 +3,30 @@
   [subheader]="post.subtitle"
   class="test"
   [style]="{ width: '60%' }"
+  *ngIf="user"
 >
   <ng-template pTemplate="header">
     <div
-      class="top"
-      [routerLink]="['/profile/user/', post.username]"
-      routerLinkActive="router-link-active"
+      style="display: flex; justify-content: space-between; align-items: center"
     >
-      <div class="left">
-        <img [src]="user.profilePicture" alt="" />
+      <div
+        class="top"
+        [routerLink]="['/profile/user/', post.username]"
+        routerLinkActive="router-link-active"
+      >
+        <div class="left">
+          <img [src]="user.profilePicture" alt="" />
+        </div>
+        <div class="right">
+          <strong>{{ post.username }}</strong>
+          <small>5 mins ago</small>
+        </div>
       </div>
-      <div class="right">
-        <strong>{{ post.username }}</strong>
-        <small>5 mins ago</small>
-      </div>
+      <i
+        class="pi pi-times"
+        style="color: red; margin-right: 10px; font-size: 1.5rem"
+        (click)="toogleModalVisibility()"
+      ></i>
     </div>
   </ng-template>
 
@@ -56,3 +66,25 @@
     </div>
   </ng-template>
 </p-card>
+
+<app-modal [visibility]="dialogVisibe" style="z-index: 5">
+  <div
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    "
+  >
+    Are you sure to delete this post?
+
+    <div class="modalControls">
+      <p-button (click)="deletePost()" label="Yes" severity="danger"></p-button>
+      <p-button
+        (click)="toogleModalVisibility()"
+        label="No"
+        style="margin-left: 30px"
+      ></p-button>
+    </div>
+  </div>
+</app-modal>
