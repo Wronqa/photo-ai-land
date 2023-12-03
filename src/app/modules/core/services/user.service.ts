@@ -6,7 +6,7 @@ import {
   IPasswords,
   IUser,
 } from '../../shared/interfaces/user.interface';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -39,6 +39,17 @@ export class UserService {
   }
   getFriends(username: string) {
     return this.http.get<IUser[]>('/api/user/friends/' + username);
+  }
+  getPopularUser() {
+    return this.http.get<IUser[]>('/api/users').pipe(
+      map((users) => {
+        const sortedUser = users.sort(
+          (a, b) => (b.followings.length = a.followings.length)
+        );
+
+        return sortedUser.slice(0, 4);
+      })
+    );
   }
   logout() {
     return this.http.get('/api/auth/logout');

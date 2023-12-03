@@ -8,9 +8,23 @@
   </ng-template>
 
   <ng-template pTemplate="end"
-    ><app-search-bar style="margin-right: 30rem" />
+    ><app-search-bar style="margin-right: 10rem" *ngIf="myUser" />
   </ng-template>
 </p-menubar>
-<app-modal [visibility]="dialogVisibe" style="z-index: 5">
+<app-modal
+  [title]="'Followers'"
+  [visibility]="dialogVisibe"
+  style="z-index: 5"
+  (closeFn)="toogleModalVisibility()"
+>
   <app-friends-list></app-friends-list>
+</app-modal>
+
+<app-modal
+  [title]="'Followings'"
+  [visibility]="dialogFollowersVisible"
+  style="z-index: 5"
+  (closeFn)="toogleModalFollowersVisibility()"
+>
+  <app-followers-list *ngIf="dialogFollowersVisible" />
 </app-modal>

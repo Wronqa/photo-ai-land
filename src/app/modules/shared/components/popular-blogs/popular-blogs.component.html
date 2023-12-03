@@ -1,0 +1,29 @@
+<div class="list">
+  <div class="users">
+    <ng-container *ngFor="let user of users">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <div
+          class="top"
+          [routerLink]="['/profile/user/', user.username]"
+          routerLinkActive="router-link-active"
+        >
+          <div class="left">
+            <img [src]="user.profilePicture" alt="" />
+          </div>
+          <div class="right">
+            <strong>{{ user.username }}</strong>
+            <small
+              ><b>{{ user.followings.length }}</b> followings</small
+            >
+          </div>
+        </div>
+      </div></ng-container
+    >
+  </div>
+</div>

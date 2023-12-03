@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
   protected posts: IPost[] = [];
   protected user!: IUser;
   protected dialogVisibe = false;
+  protected dialogStatsVisibe = false;
   username!: string;
   isFollowed!: boolean;
   myUser!: IUser;
@@ -75,6 +76,9 @@ export class ProfileComponent implements OnInit {
   toogleModalVisibility(post?: any) {
     post && this.posts.push(post);
     this.dialogVisibe = !this.dialogVisibe;
+  }
+  toogleModalVisibilityForStats() {
+    this.dialogStatsVisibe = !this.dialogStatsVisibe;
   }
   followUser() {
     this.userService.followUser(this.username).subscribe((res) => {

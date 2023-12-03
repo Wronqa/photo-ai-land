@@ -1,6 +1,7 @@
 .container {
   display: flex;
   align-items: center;
+  margin-top: 20px;
 
   input {
     margin-left: 5px;
@@ -10,5 +11,6 @@
     border: none;
     border-radius: 5px;
     outline: none;
+    border: 1px solid rgba(220, 20, 60, 0.144);
   }
 }

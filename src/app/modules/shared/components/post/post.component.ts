@@ -6,6 +6,7 @@ import { UserService } from 'src/app/modules/core/services/user.service';
 import { MessageService } from 'primeng/api';
 import { Store, select } from '@ngrx/store';
 import { selectUser } from 'src/app/modules/store/user/user.selectors';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-post',
@@ -13,6 +14,7 @@ import { selectUser } from 'src/app/modules/store/user/user.selectors';
   styleUrls: ['./post.component.scss'],
 })
 export class PostComponent implements OnInit {
+  protected views = 0;
   protected user!: IUser;
   private tempUsername = 'wronka';
   @Input() post!: IPost;
@@ -20,6 +22,8 @@ export class PostComponent implements OnInit {
   protected photos!: any;
   protected dialogVisibe = false;
   protected myUser!: IUser;
+  protected timeAgo!: string;
+  protected commentVisible = false;
 
   constructor(
     private postService: PostService,
@@ -29,6 +33,20 @@ export class PostComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const views = window.localStorage.getItem(this.post._id);
+
+    if (!views) {
+      window.localStorage.setItem(this.post._id, JSON.stringify({ views: 0 }));
+    } else {
+      const newViews = JSON.parse(views);
+      console.log(newViews);
+      window.localStorage.setItem(
+        this.post._id,
+        JSON.stringify({ views: newViews.views + 1 })
+      );
+      this.views = newViews.views + 1;
+    }
+
     this.photos = this.post.img.map((img: any) => {
       return { url: img.url };
     });
@@ -40,6 +58,8 @@ export class PostComponent implements OnInit {
     this.userService
       .getUser(this.post.username)
       .subscribe((res) => (this.user = res));
+
+    this.timeAgo = moment(this.post.createdAt).fromNow();
   }
   toogleModalVisibility(post?: any) {
     this.dialogVisibe = !this.dialogVisibe;
@@ -69,5 +89,8 @@ export class PostComponent implements OnInit {
   }
   checkLiked() {
     return this.post.likes.includes(this.tempUsername);
+  }
+  toggleVisible() {
+    this.commentVisible = !this.commentVisible;
   }
 }

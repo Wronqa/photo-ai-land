@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { IComment } from '../../interfaces/post.interfaces';
 import { UserService } from 'src/app/modules/core/services/user.service';
 import { IUser } from '../../interfaces/user.interface';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-comment',
@@ -11,6 +12,7 @@ import { IUser } from '../../interfaces/user.interface';
 export class CommentComponent {
   @Input() comment!: IComment;
   protected user!: IUser;
+  protected commentAgo!: string;
 
   constructor(private userService: UserService) {}
 
@@ -20,5 +22,6 @@ export class CommentComponent {
       console.log(user);
     });
     console.log(this.comment);
+    this.commentAgo = moment(this.comment.date).fromNow();
   }
 }

@@ -6,6 +6,7 @@
     </div>
 
     <h1>User profile</h1>
+
     <div class="card flex controls2">
       <p-button
         class="btn"
@@ -13,6 +14,13 @@
         (click)="toogleModalVisibility()"
         icon="pi pi-external-link"
         label="Add post"
+      ></p-button>
+      <p-button
+        class="btn"
+        styleClass="p-button-danger p-button-text"
+        (click)="toogleModalVisibilityForStats()"
+        icon="pi pi-external-link"
+        label="Show statistic"
       ></p-button>
       <p-button
         class="btn"
@@ -31,10 +39,21 @@
       ></p-button>
     </div>
   </div>
+  <div class="stat">
+    <div *ngIf="dialogStatsVisibe">
+      <ng-container *ngIf="posts.length > 0">
+        <app-stats [posts]="posts"
+      /></ng-container>
+    </div>
+  </div>
 
   <app-feed [posts]="posts" />
 
-  <app-modal [visibility]="dialogVisibe" style="z-index: 5">
+  <app-modal
+    [visibility]="dialogVisibe"
+    style="z-index: 5"
+    [title]="'Add new post'"
+  >
     <app-add-post (closeFn)="toogleModalVisibility($event)" />
   </app-modal>
 </div>

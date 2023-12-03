@@ -1,7 +1,7 @@
 <div class="test" *ngIf="user">
   <div class="top">
     <div class="left" [routerLink]="['/profile/user', user.username]">
-      <img [src]="user.profilePicture" alt="" />
+      <img [src]="user.profilePicture" class="image" alt="" />
     </div>
     <div class="right">
       <strong>{{ user.username }}</strong>

@@ -22,15 +22,21 @@
     <label class="font-semibold" htmlFor="username">Attach photos</label>
 
     <p-fileUpload
-      mode="basic"
       name="demo[]"
-      accept="image/*"
-      [customUpload]="true"
-      [multiple]="true"
-      (onSelect)="onUpload($event)"
       [auto]="true"
-      chooseLabel="Browse"
-    ></p-fileUpload>
+      [customUpload]="true"
+      (onSelect)="onUpload($event)"
+      [multiple]="true"
+      accept="image/*"
+    >
+      <ng-template pTemplate="content">
+        <ul *ngIf="uploadedFiles.length">
+          <li *ngFor="let file of uploadedFiles">
+            {{ file.name }} - {{ file.size }} bytes
+          </li>
+        </ul>
+      </ng-template>
+    </p-fileUpload>
   </div>
 
   <div class="flex flex-column gap-2 mt-2">

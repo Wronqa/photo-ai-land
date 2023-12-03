@@ -19,7 +19,7 @@
         </div>
         <div class="right">
           <strong>{{ post.username }}</strong>
-          <small>5 mins ago</small>
+          <small>{{ timeAgo }}</small>
         </div>
       </div>
       <i
@@ -32,11 +32,6 @@
   </ng-template>
 
   <ng-template pTemplate="content" style="position: relative">
-    <!-- <img
-      src="https://tvn24.pl/najnowsze/cdn-zdjecie-thz3d5-tecza-na-niebie-5476379/tecza+shutterstock_646187128.jpg"
-      alt=""
-      style="width: 100%; height: 150px"
-    /> -->
     <app-photo-gallery [images]="photos" />
     <p>
       {{ post.desc }}
@@ -54,12 +49,15 @@
         <span style="margin-left: 10px">{{ post.likes.length }} likes</span>
       </div>
       <div style="display: flex; align-items: center">
-        <span style="margin-left: 10px"
+        {{ views }} <span> &nbsp; </span> <span class="pi pi-eye"></span>
+        <span
+          style="margin-left: 10px; cursor: pointer"
+          (click)="toggleVisible()"
           >{{ post.comments.length }} comments</span
         >
       </div>
     </div>
-    <div class="d-flex flex-column">
+    <div class="d-flex flex-column" *ngIf="commentVisible">
       <app-comment-form [post]="post" />
       <ng-container *ngFor="let comment of post.comments">
         <app-comment [comment]="comment" />

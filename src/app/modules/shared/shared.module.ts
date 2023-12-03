@@ -21,6 +21,9 @@ import { PhotoGalleryComponent } from './components/photo-gallery/photo-gallery.
 
 import { GalleriaModule } from 'primeng/galleria';
 import { FriendsListComponent } from './components/friends-list/friends-list.component';
+import { FollowersListComponent } from './components/followers-list/followers-list.component';
+import { PopularBlogsComponent } from './components/popular-blogs/popular-blogs.component';
+import { StatsComponent } from './components/stats/stats.component';
 @NgModule({
   declarations: [
     ErrorMessageComponent,
@@ -35,6 +38,9 @@ import { FriendsListComponent } from './components/friends-list/friends-list.com
     SpinnerComponent,
     PhotoGalleryComponent,
     FriendsListComponent,
+    FollowersListComponent,
+    PopularBlogsComponent,
+    StatsComponent,
   ],
   imports: [
     CommonModule,
@@ -60,6 +66,9 @@ import { FriendsListComponent } from './components/friends-list/friends-list.com
     SpinnerComponent,
     UserProfileInfoComponent,
     FriendsListComponent,
+    FollowersListComponent,
+    PopularBlogsComponent,
+    StatsComponent,
   ],
 })
 export class SharedModule {}

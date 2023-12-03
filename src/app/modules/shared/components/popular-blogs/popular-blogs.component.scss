@@ -1,7 +1,9 @@
-.test {
+.list {
+  display: flex;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
-  align-content: center;
+
   .top {
     padding: 10px;
     display: flex;
@@ -9,8 +11,8 @@
 
     .left {
       img {
-        width: 30px;
-        height: 30px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
       }
     }
@@ -21,4 +23,9 @@
       justify-content: center;
     }
   }
+}
+.users {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
 }

@@ -1,5 +1,5 @@
 <div class="container">
-  <app-user-profile-info />
+  <app-user-profile-info [user]="myUser" />
   <input type="text" [(ngModel)]="comment" />
   <p-button
     label="Send"
