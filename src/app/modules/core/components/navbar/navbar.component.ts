@@ -43,12 +43,12 @@ export class NavbarComponent implements OnInit {
           },
 
           {
-            label: 'Followers',
+            label: 'Followings',
             icon: 'pi pi-fw pi-user-edit',
             command: () => this.toogleModalVisibility(),
           },
           {
-            label: 'Followings',
+            label: 'Followers',
             icon: 'pi pi-fw pi-user-edit',
             command: () => this.toogleModalFollowersVisibility(),
           },

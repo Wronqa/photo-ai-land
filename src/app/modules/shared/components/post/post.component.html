@@ -33,9 +33,7 @@
 
   <ng-template pTemplate="content" style="position: relative">
     <app-photo-gallery [images]="photos" />
-    <p>
-      {{ post.desc }}
-    </p>
+    <p style="margin-top: 30px" [innerHTML]="post.desc"></p>
   </ng-template>
 
   <ng-template pTemplate="footer">

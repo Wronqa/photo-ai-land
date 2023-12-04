@@ -44,7 +44,7 @@ export class UserService {
     return this.http.get<IUser[]>('/api/users').pipe(
       map((users) => {
         const sortedUser = users.sort(
-          (a, b) => (b.followings.length = a.followings.length)
+          (a, b) => b.followers.length - a.followers.length
         );
 
         return sortedUser.slice(0, 4);

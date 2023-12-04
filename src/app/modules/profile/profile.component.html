@@ -14,6 +14,7 @@
         (click)="toogleModalVisibility()"
         icon="pi pi-external-link"
         label="Add post"
+        *ngIf="myUser.username === user.username"
       ></p-button>
       <p-button
         class="btn"
@@ -21,12 +22,15 @@
         (click)="toogleModalVisibilityForStats()"
         icon="pi pi-external-link"
         label="Show statistic"
+        *ngIf="myUser.username === user.username"
       ></p-button>
       <p-button
         class="btn"
         styleClass="p-button-danger p-button-text"
         icon="pi pi-external-link"
         label="Edit profile info"
+        [routerLink]="['../../edit']"
+        *ngIf="myUser.username === user.username"
       ></p-button>
       <p-button
         *ngIf="myUser.username !== username"
@@ -57,3 +61,7 @@
     <app-add-post (closeFn)="toogleModalVisibility($event)" />
   </app-modal>
 </div>
+
+<ng-template #templateZ>
+  <div style="margin-top: 30px"></div>
+</ng-template>

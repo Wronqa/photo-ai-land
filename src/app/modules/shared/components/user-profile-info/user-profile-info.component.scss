@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-content: center;
+  width: 100%;
   .top {
     padding: 10px;
     display: flex;
@@ -16,6 +17,7 @@
     }
     .right {
       margin-left: 10px;
+      width: 100px;
       display: flex;
       flex-direction: column;
       justify-content: center;

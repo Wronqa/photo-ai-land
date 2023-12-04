@@ -1,3 +1,6 @@
-<div class="list" *ngFor="let user of followings">
-  <app-user-profile-info [user]="user" />
-</div>
+<ng-container *ngIf="followings.length > 0; else loading">
+  <div class="list" *ngFor="let user of followings">
+    <app-user-profile-info [user]="user" />
+  </div>
+</ng-container>
+<ng-template #loading>Loading...</ng-template>
