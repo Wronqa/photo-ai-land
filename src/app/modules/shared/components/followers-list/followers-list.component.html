@@ -3,4 +3,7 @@
     <app-user-profile-info [user]="user" />
   </div>
 </ng-container>
-<ng-template #loading>You don't have any followers</ng-template>
+<ng-template #loading>
+  <ng-container *ngIf="isLoading; else noFriends">Loading... </ng-container>
+</ng-template>
+<ng-template #noFriends>You don't have any followers :/</ng-template>
