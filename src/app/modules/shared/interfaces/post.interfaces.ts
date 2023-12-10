@@ -3,7 +3,7 @@ export interface IPost {
   title: string;
   desc: string;
   createdAt: Date;
-  img: [key: string][];
+  img: { [key: string]: string }[];
   username: string;
   likes: string[];
   comments: IComment[];
